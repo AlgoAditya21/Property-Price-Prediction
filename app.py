@@ -17,7 +17,7 @@ def load_resources():
     
     # Load the Random Forest Model
     # MAKE SURE 'RandomForestModel.pkl' exists in your repo!
-    pipe = pickle.load(open("RandomForestModel.pkl", "rb")) 
+    pipe = pickle.load(open("RandomForestModel.pkl", "rb")) # <--- NEW FIXED FILE
     return data, pipe
 
 try:
