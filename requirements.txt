@@ -3,5 +3,6 @@ pandas
 matplotlib
 scikit-learn
 pickle-mixin
-streamlit
+streamlit>=1.30.0
 jupyter
+altair==4.2.2
