@@ -1,6 +1,8 @@
 # 🏡 Intelligent Property Price Prediction & Advisory
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://property-price-prediction-gtimcwa4dxim7wch7wjgvt.streamlit.app/)## 🚀 Project Overview
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://property-price-prediction-gtimcwa4dxim7wch7wjgvt.streamlit.app/)
+
+## 🚀 Project Overview
 An end-to-end Machine Learning web application designed to predict real estate prices in Bangalore. By analyzing historical property data, the model provides accurate price estimates based on location, square footage, and bedroom/bathroom count, helping buyers identify premium vs. affordable market rates.
 
 ## 🛠️ Tech Stack
