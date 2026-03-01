@@ -17,3 +17,18 @@ An end-to-end Machine Learning web application designed to predict real estate p
 2. Navigate to the folder: `cd Property-Price-Prediction`
 3. Install dependencies: `pip install -r requirements.txt`
 4. Run the app: `streamlit run app.py`
+
+
+## 🏗️ System Architecture
+
+The application follows a modular ML pipeline architecture consisting of:
+
+- **Data Layer** → Data preprocessing & cleaning  
+- **ML Pipeline** → Feature engineering, model training & evaluation  
+- **Persisted Artifacts** → Serialized trained model (.pkl)  
+- **Serving Layer** → Streamlit UI for real-time inference  
+
+### 📌 Architecture Diagram
+
+![System Architecture](system_architecture.png)
+
