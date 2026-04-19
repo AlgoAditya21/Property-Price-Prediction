@@ -69,7 +69,6 @@ def main() -> None:
 	print("Loading cleaned_data.csv...")
 	df = pd.read_csv("cleaned_data.csv")
 
-	# Keep training resilient if optional columns are absent.
 	cols_to_drop = ["price", "price_per_sqft", "size"]
 	existing_cols_to_drop = [c for c in cols_to_drop if c in df.columns]
 

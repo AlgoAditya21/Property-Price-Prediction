@@ -10,7 +10,6 @@ from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 
-# Load the secret API key
 load_dotenv()
 
 
@@ -50,7 +49,6 @@ def _get_embedding_for_existing_db(persist_dir: str):
 	"""Pick an embedding function compatible with the already built Chroma DB."""
 	embedding_model = os.getenv("GOOGLE_EMBEDDING_MODEL", "models/gemini-embedding-001")
 
-	# Probe embedding backends in descending quality order.
 	candidates = [
 		(
 			"Google",
@@ -81,7 +79,6 @@ def _get_embedding_for_existing_db(persist_dir: str):
 			print(f"{name} embedding retriever unavailable ({exc}).")
 			embedding_fn = None
 
-	# If all fail, use LocalHash as absolute fallback
 	if embedding_fn is None:
 		print("All embedding backends failed. Using LocalHash embeddings as fallback.")
 		return LocalHashEmbeddings(dim=3072)
@@ -138,16 +135,11 @@ class RealEstateRAGAgent:
 
 
 def get_real_estate_agent():
-	# 1. Initialize the LLM
 	llm = _get_chat_llm()
-
-	# 2. Connect to the ChromaDB
 	persist_dir = "./chroma_db"
 	embeddings = _get_embedding_for_existing_db(persist_dir)
 	vector_db = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
 	retriever = vector_db.as_retriever(search_kwargs={"k": 3})
-
-	# 3. Define behavior/personality
 	system_prompt = (
 		"You are an expert, professional Bangalore Real Estate Advisor. "
 		"Use only the retrieved context from market reports to answer the user precisely. "

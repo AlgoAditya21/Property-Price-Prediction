@@ -9,7 +9,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
-# Load the secret key
 load_dotenv()
 
 
@@ -45,7 +44,6 @@ class LocalHashEmbeddings:
         return self._embed_text(text)
 
 def create_vector_db():
-    # 1. Load PDFs from the 'data' folder
     print("Loading PDFs from the data folder...")
     loader = PyPDFDirectoryLoader("data")
     docs = loader.load()
@@ -56,19 +54,15 @@ def create_vector_db():
 
     print(f"Loaded {len(docs)} pages.")
 
-    # 2. Split the text into manageable chunks
     print("Splitting text into chunks...")
-    # Larger chunks keep embedding request count below strict free-tier limits.
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=300)
     chunks = text_splitter.split_documents(docs)
     print(f"Created {len(chunks)} chunks.")
 
-    # 3. Convert to embeddings and save to ChromaDB
     print("Creating vector database... (This might take a few seconds)")
     embedding_model = os.getenv("GOOGLE_EMBEDDING_MODEL", "models/gemini-embedding-001")
     persist_dir = "./chroma_db"
 
-    # Rebuild the store from scratch to avoid mixed-dimension vectors.
     shutil.rmtree(persist_dir, ignore_errors=True)
 
     try:
