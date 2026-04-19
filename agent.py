@@ -16,7 +16,7 @@ load_dotenv()
 class LocalHashEmbeddings(Embeddings):
 	"""Dependency-free embeddings used when cloud embeddings are unavailable."""
 
-	def __init__(self, dim: int = 3072):
+	def __init__(self, dim: int = 384):
 		self.dim = dim
 
 	def _embed_text(self, text: str) -> List[float]:
@@ -62,7 +62,7 @@ def _get_embedding_for_existing_db(persist_dir: str):
 		),
 		(
 			"LocalHash",
-			lambda: LocalHashEmbeddings(dim=3072),
+			lambda: LocalHashEmbeddings(),
 			"Using local hash embeddings for retrieval.",
 		),
 	]
@@ -81,7 +81,7 @@ def _get_embedding_for_existing_db(persist_dir: str):
 
 	if embedding_fn is None:
 		print("All embedding backends failed. Using LocalHash embeddings as fallback.")
-		return LocalHashEmbeddings(dim=3072)
+		return LocalHashEmbeddings()
 
 	raise RuntimeError("No compatible embedding backend found for the current Chroma DB.")
 
