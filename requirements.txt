@@ -6,3 +6,11 @@ pickle-mixin
 streamlit>=1.30.0
 jupyter
 altair==4.2.2
+python-dotenv
+langchain-community
+langchain
+langchain-text-splitters
+langchain-google-genai
+chromadb
+pypdf
+fastembed
